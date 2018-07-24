@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require('mongoose');
 var methodOverride=require('method-override');
 var expressSanitizer = require('express-sanitizer');
+const port = process.env.PORT || 3000;
 
 mongoose.connect("mongodb://localhost/yelp_camp");
 app.set("view engine", "ejs");
@@ -116,6 +117,6 @@ app.delete("/blogs/:id",function(req,res){
 });
 
 
-app.listen(3000, function(){
+app.listen(port, function(){
 	console.log('Server Started');
 })
