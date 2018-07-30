@@ -4,6 +4,7 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
 	<div class="ui fixed inverted menu">
@@ -11,6 +12,38 @@
 			<div class="header item"><i class = "code icon"></i>Blog Site</div>
 			<a href="/blogs" class="item">Home</a>
 			<a href="/blogs/new" class="item">New Post</a>
+			<div class="right menu">
+			    <div class="item">
+			      <div class="ui icon input">
+			        <input type="text" placeholder="Search...">
+			        <i class="search link icon"></i>
+			      </div>
+			    </div>
+			    <% if(!currentUser){ %>
+			    
+			    	<a class="ui item" href="/login">LogIn</a>
+			    	<a class="ui item" href="/register">Signup</a>
+					<% } else { %>
+						<a class="ui item">Signed in as <%= currentUser.username %></a>
+						<a class="ui item" href="/logout">Logout</a>
+					<% } %>
+
+			    
+			    
+			  </div>
+
 		</div>
 	</div>
+<div class="ui container" style="margin-top: 60px;">
+	<% if(error && error.length > 0) { %>
+		<div class="alert alert-danger" role="alert">
+			<h6> <%= error %></h6>
+		</div>
+	<% } %>
+	<% if(success && success.length > 0) { %>
+		<div class="alert alert-success" role="alert">
+			<h6> <%= success %></h6>
+		</div>
+	<% } %>
+</div>
 

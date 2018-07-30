@@ -8,3 +8,16 @@ i.icon {
 #delete{
 	display: inline;
 }
+/*body{
+	background:purple;
+}*/
+.thumbnail img{
+	width: 100%;
+}
+.thumbnail{
+	padding :0;
+}
+.description p{
+	padding: 0;
+	text-align:justify;
+}

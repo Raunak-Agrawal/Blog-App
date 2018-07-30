@@ -1,0 +1,137 @@
+<% include ../partials/header %>
+<div class ="ui main text container segment">
+
+<div class="ui internally celled grid">
+  <div class="row">
+    <div class="three wide column">
+    	<div class="ui inverted segment">
+  			<div class="ui inverted relaxed divided list">
+		    	<div class="item">
+		      		<div class="content">
+		        		<div class="header">Info 1</div>
+		      		</div>
+		    	</div>
+
+		    	<div class="item">
+		      		<div class="content">
+		        		<div class="header">Info 2</div>
+		      		</div>
+		    	</div>
+		   </div>
+		</div>
+		</div>
+
+
+
+
+    <div class="thirteen wide column">
+    	<div class="thumbnail">
+	  
+		<div class = "ui huge header"><%= blog.title %></div>
+		<div class ="ui top attached">
+			<div class ="item">
+				<img class =" ui centered image" src="<%= blog.image %>"><br>
+			</div>
+			<div class ="ui clearing segment">
+				<!-- <span><%= blog.created.toDateString() %></span> -->
+			
+
+			
+  				<h3 class="ui right floated header">
+    				$<%= blog.price %>/piece
+  				</h3>
+  			
+  			</div>
+
+			<div class ="description">
+				<p><%- blog.body %></p>
+				<p><em>Submitted by  <%= blog.author.username %> <em></p>
+			</div>
+
+			<p></p><p></p>
+
+			<% if(currentUser && blog.author.id.equals(currentUser._id)) { %>
+			<a class ="ui orange basic button" href="/blogs/<%=blog._id %>/edit">Edit Blog</a>
+			<form id ="delete" action="/blogs/<%=blog._id %>?_method=DELETE" method="POST"> 
+			<button class="ui red basic button">Delete Blog</button>
+			</form>
+			<% } %>
+		   </div>
+		   
+	   </div>
+	   	
+		</div>
+	</div>
+</div>
+</div>
+
+<div class ="ui main text container segment" style="margin-top: 3px; margin-bottom: 5px;">
+	   		
+		
+			 <a class ="ui green basic right floated button" href="/blogs/<%=blog._id %>/comments/new">Add new comment</a>
+
+			 
+		
+				 <div class="ui comments">
+					  <h3 class="ui dividing header">Comments</h3>
+					  <div class="comment">
+					    <!-- <a class="avatar">
+					      <img src="/images/avatar/small/matt.jpg">
+					    </a> -->
+					    <% blog.comments.forEach(function(comment){ %>
+					    <div class="content">
+					      <a class="author"><%= comment.author.username %></a>
+					      <div class="metadata">
+					        <span class="date">Today at <%= comment.created.toDateString() %></span>
+					      </div>
+					      <div class="text">
+					        <p><%= comment.text %></p>
+					      </div>
+					      <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+					      <div class="ui buttons">
+						        <a class="mini ui positive button" href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit">Edit</a>
+
+						        <!-- <div class="or"></div> -->
+						      
+						      <form action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+						      		<button class="mini ui button">Delete</button>
+						      </form>
+					      </div>
+					      <% } %>
+					    </div>
+					    <% }) %>
+	  				</div>
+	  			</div>
+			</div>
+
+
+
+
+
+		<!-- <div class="ui divided items">
+		  <div class="item">
+		    <div class="left aligned content">
+		    	
+			        
+		      	
+		      	<% blog.comments.forEach(function(comment){ %>
+				      <div class="header">
+				        <%= comment.author %>
+				      </div>
+				      <div class="description">
+				        <p><%= comment.text %></p><hr>
+				      </div>
+		      <% }) %>
+		      
+		    </div>
+		  </div>
+
+	   </div> -->
+
+
+
+
+
+
+
+<% include ../partials/footer %>
